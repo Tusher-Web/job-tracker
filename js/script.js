@@ -83,8 +83,7 @@ function handleAction(event) {
 
   // Interview
   if (event.target.classList.contains("interview-button")) {
-    card.querySelector(".job-status")
-      .innerText = "Interview";
+    card.querySelector(".job-status").innerText = "Interview";
 
     const job = {
       companyName,
@@ -102,10 +101,7 @@ function handleAction(event) {
       interviewList.push(job);
     }
 
-    rejectedList =
-      rejectedList.filter(
-        j => j.companyName !== companyName
-      );
+    rejectedList =rejectedList.filter(j => j.companyName !== companyName);
 
     refreshCurrentTab();
   }
@@ -113,8 +109,7 @@ function handleAction(event) {
 
 //  Rejected
   else if (event.target.classList.contains("rejection-button")){
-    card.querySelector(".job-status")
-      .innerText = "Rejected";
+    card.querySelector(".job-status").innerText = "Rejected";
 
     const job = {
       companyName,
