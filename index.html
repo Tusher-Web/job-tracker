@@ -1,57 +1,138 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Job Tracker</title>
 
-    <!-- Tailwind + DaisyUI -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind and Daisy UI CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- Fonts Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- External CSS -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="bg-base-200">
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="bg-base-200">
+    <div class="max-w-5xl mx-auto p-4">
+      <h1 class="text-3xl font-bold">Job Application Tracker</h1>
 
-<div class="max-w-5xl mx-auto p-4">
-    <h1 class="text-3xl font-bold"> Job Application Tracker </h1>
+      <!-- Dashboard Section -->
+      <div class="grid md:grid-cols-3 gap-4 my-6">
+        <div class="card bg-amber-100">
+          <div class="card-body">
+            <p class="text-xl">Total</p>
+            <h2 id="totalCount" class="text-lg text-green-500">0</h2>
+          </div>
+        </div>
+        <div class="card bg-green-100">
+          <div class="card-body">
+            <p class="text-xl">Interview</p>
+            <h2 id="interviewCount" class="text-lg">0</h2>
+          </div>
+        </div>
+        <div class="card bg-red-100">
+          <div class="card-body">
+            <p class="text-xl">Rejected</p>
+            <h2 id="rejectedCount" class="text-lg text-red-500">0</h2>
+          </div>
+        </div>
+      </div>
 
-    <!-- Dashboard Section -->
-    <div class="grid md:grid-cols-3 gap-4 my-6">
-        <div class="card bg-base-100">
-            <div class="card-body">
-                <p>Total</p>
-                <h2 id="totalCount">0</h2>
+      <!-- Tabs Section -->
+      <div class="tabs tabs-border mb-3 justify-center">
+        <button onclick="toggleStyle('all-job-button')" id="all-job-button" class="tab tab-active">All</button>
+        <button onclick="toggleStyle('interview-filter-btn')"  id="interview-filter-btn" class="tab">Interview</button>
+        <button onclick="toggleStyle('rejection-filter-btn')"  id="rejection-filter-btn" class="tab">Rejected</button>
+      </div>
+
+      <div id="filtered-section" class="hidden">
+
+      </div>
+
+      <!-- All Jobs -->
+      <div id="jobContainer">
+
+        <!-- Card - 1 -->
+        <div class="card bg-base-100 shadow mb-3">
+          <div class="card-body">
+            <div class="flex justify-between">
+              <h2 class="company-name font-bold text-lg">Mobile First Corp</h2>
+              <button onclick="deleteJob()" class="btn btn-sm btn-circle">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
             </div>
-        </div>
-        <div class="card bg-base-100">
-            <div class="card-body">
-                <p>Interview</p>
-                <h2 id="interviewCount">0</h2>
+            <p class="job-designation font-medium">UI Designer</p>
+            <p class="job-summary text-sm text-gray-500">Onsite • Contract • 70k</p>
+            <p class="job-details">Design modern UI systems</p>
+            <p class="job-status my-2">Not applicable</p>
+            <div class="space-x-2">
+              <button class="interview-button btn btn-success btn-sm">
+                Interview
+              </button>
+              <button class="rejection-button btn btn-error btn-sm">
+                Rejected
+              </button>
             </div>
+          </div>
         </div>
-        <div class="card bg-base-100">
-            <div class="card-body">
-                <p>Rejected</p>
-                <h2 id="rejectedCount">0</h2>
+
+        <!-- Card - 2 -->
+        <div class="card bg-base-100 shadow mb-3">
+          <div class="card-body">
+            <div class="flex justify-between">
+              <h2 class="company-name font-bold text-lg">BrightLabs</h2>
+              <button onclick="deleteJob()" class="btn btn-sm btn-circle">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
             </div>
+            <p class="job-designation font-medium">QA Engineer</p>
+            <p class="job-summary text-sm text-gray-500">Onsite • Full Time • 80k</p>
+            <p class="job-details">Test applications</p>
+            <p class="job-status my-2">Not applicable</p>
+            <div class="space-x-2">
+              <button class="interview-button btn btn-success btn-sm">
+                Interview
+              </button>
+              <button class="rejection-button btn btn-error btn-sm">
+                Rejected
+              </button>
+            </div>
+          </div>
         </div>
+
+
+        
+
+
+      </div>
+      
     </div>
 
-    <!-- Tabs Section -->
-    <div class="tabs tabs-boxed">
-        <button id="allTab" class="tab tab-active"> All </button>
-        <button id="interviewTab" class="tab"> Interview </button>
-        <button id="rejectedTab" class="tab"> Rejected </button>
-    </div>
+    <!-- Main JS File -->
+    <script src="js/script.js"></script>
 
-    <!-- All Applied Jobs -->
-    <div id="jobContainer"></div>
-</div>
-    
+    <!-- Tailwind JS File -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <!-- Job Data JS File -->
-     <script src="/js/data.js"></script>
-</body>
+  </body>
 </html>
