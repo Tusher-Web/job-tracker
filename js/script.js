@@ -136,7 +136,7 @@ function refreshCurrentTab() {
 function emptyMessage(text) {
   filteredSection.innerHTML = `
     <div class="text-center p-10 text-3xl text-gray-500">
-        <i class="fa-solid fa-file-excel mb-3 text-sky-700 text-8xl"></i>
+        <i class="fa-solid fa-file-excel mb-5 text-sky-700 text-6xl"></i>
         <br>
         ${text}
     </div>
