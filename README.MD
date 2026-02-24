@@ -1,4 +1,16 @@
+## 2️⃣ How to Create and Insert a New Element into the DOM
+To add a new element to a web site, first **create it** using `document.createElement()` and **insert it** into a parent element using methods like `appendChild()`.
 
+** Example**
+```javascript
+// 1. Create a new div
+let newDiv = document.createElement("div");
+
+// 2. Add text to the div
+newDiv.innerText = "Hello, I am new here!";
+
+// 3. Insert the div into the body
+document.body.appendChild(newDiv);
 
 
 ## 3️⃣ What is Event Bubbling? How Does It Work?
